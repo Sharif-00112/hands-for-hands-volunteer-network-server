@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 //database connection info
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.aruppvu.mongodb.net/?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2u1kzbo.mongodb.net/?retryWrites=true&w=majority`;
 // console.log(uri);
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -31,9 +31,8 @@ async function run() {
 }
 run().catch(console.dir);
 
-
 app.get('/', (req, res) => {
-  res.send('Hello Template World!');
+  res.send('Hello Template World (Server)!');
 }); 
 
 app.listen(port, () => {
