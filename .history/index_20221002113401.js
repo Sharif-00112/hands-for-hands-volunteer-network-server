@@ -21,19 +21,8 @@ async function run() {
   try {
     await client.connect();
     console.log('Database Connected');
-    
     const database = client.db("test_DB");
     const testCollection1 = database.collection("test_1");
-
-    const database2 = client.db("hands_for_hands_DB");
-    const eventsCollection1 = database2.collection("events");
-
-    //GET API (all)
-    app.get('/events', async(req, res) =>{
-      const cursor = eventsCollection1.find({});
-      const events = await cursor.toArray();
-      res.send(events);
-    })
 
 
   } finally {
@@ -43,7 +32,7 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => {
-  res.send('Hello Volunteer World (Server)!');
+  res.send('Hello Template World (Server)!');
 }); 
 
 app.listen(port, () => {
