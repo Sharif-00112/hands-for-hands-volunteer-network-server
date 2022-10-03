@@ -77,17 +77,6 @@ async function run() {
       res.json(result);
     });
 
-    //5. DELETE API (delete interested event by id)
-    app.delete('/interestedEvents/:id', async(req, res) =>{
-      const id = req.params.id;
-      const query = {_id: ObjectId(id)};
-      const result = await interestedEventsCollection.deleteOne(query);
-
-      console.log('deleting interested event with id: ', result);
-
-      res.json(result);
-    })
-
   } finally {
     // await client.close();
   }
@@ -101,7 +90,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app is now listening on port ${port}`);
 });
-
 
 // DB_USER=firstUserVolunteer
 // DB_PASS=G0DZNy51gu9cD3bD

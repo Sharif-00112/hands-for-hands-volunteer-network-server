@@ -102,6 +102,5 @@ app.listen(port, () => {
   console.log(`Example app is now listening on port ${port}`);
 });
 
-
 // DB_USER=firstUserVolunteer
 // DB_PASS=G0DZNy51gu9cD3bD

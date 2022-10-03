@@ -30,23 +30,9 @@ async function run() {
     const interestedEventsCollection = database2.collection("interestedEvents");
     const joinedEventsCollection = database2.collection("joinedEvents");
 
-    //GET API (all events)
+    //GET API (all)
     app.get('/events', async(req, res) =>{
       const cursor = eventsCollection.find({});
-      const events = await cursor.toArray();
-      res.send(events);
-    })
-
-    //GET API (Joined events)
-    app.get('/joinedEvents', async(req, res) =>{
-      const cursor = joinedEventsCollection.find({});
-      const events = await cursor.toArray();
-      res.send(events);
-    })
-
-    //GET API (Interested events)
-    app.get('/interestedEvents', async(req, res) =>{
-      const cursor = interestedEventsCollection.find({});
       const events = await cursor.toArray();
       res.send(events);
     })
@@ -55,8 +41,10 @@ async function run() {
     app.post('/interestedEvents', async(req, res) =>{
       //getting data from frontend
       const interestedEvent = req.body;
+
       //checking axios post
-      // console.log('hit the post api', interestedEvent);
+      console.log('hit the post api', interestedEvent);
+
       //sending data to database
       const result = await interestedEventsCollection.insertOne(interestedEvent);
 
@@ -68,25 +56,17 @@ async function run() {
     app.post('/joinedEvents', async(req, res) =>{
       //getting data from frontend
       const joinedEvent = req.body;
+
       //checking axios post
-      // console.log('hit the post api', joinedEvent);
+      console.log('hit the post api', joinedEvent);
+
       //sending data to database
       const result = await joinedEventsCollection.insertOne(joinedEvent);
 
-      console.log('Added New joined Event', result);
+      console.log('Added New interested Event', result);
       res.json(result);
     });
 
-    //5. DELETE API (delete interested event by id)
-    app.delete('/interestedEvents/:id', async(req, res) =>{
-      const id = req.params.id;
-      const query = {_id: ObjectId(id)};
-      const result = await interestedEventsCollection.deleteOne(query);
-
-      console.log('deleting interested event with id: ', result);
-
-      res.json(result);
-    })
 
   } finally {
     // await client.close();
@@ -101,7 +81,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app is now listening on port ${port}`);
 });
-
 
 // DB_USER=firstUserVolunteer
 // DB_PASS=G0DZNy51gu9cD3bD
