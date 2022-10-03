@@ -28,7 +28,6 @@ async function run() {
     const database2 = client.db("hands_for_hands_DB");
     const eventsCollection = database2.collection("events");
     const interestedEventsCollection = database2.collection("interestedEvents");
-    const joinedEventsCollection = database2.collection("joinedEvents");
 
     //GET API (all)
     app.get('/events', async(req, res) =>{
@@ -47,21 +46,6 @@ async function run() {
 
       //sending data to database
       const result = await interestedEventsCollection.insertOne(interestedEvent);
-
-      console.log('Added New interested Event', result);
-      res.json(result);
-    });
-
-    //POST API (Joined Events)
-    app.post('/joinedEvents', async(req, res) =>{
-      //getting data from frontend
-      const joinedEvent = req.body;
-
-      //checking axios post
-      console.log('hit the post api', joinedEvent);
-
-      //sending data to database
-      const result = await joinedEventsCollection.insertOne(joinedEvent);
 
       console.log('Added New interested Event', result);
       res.json(result);
