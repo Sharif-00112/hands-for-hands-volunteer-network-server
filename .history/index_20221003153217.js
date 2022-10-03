@@ -78,12 +78,12 @@ async function run() {
     });
 
     //5. DELETE API (delete interested event by id)
-    app.delete('/interestedEvents/:id', async(req, res) =>{
+    app.delete('/products/:id', async(req, res) =>{
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
-      const result = await interestedEventsCollection.deleteOne(query);
+      const result = await productCollection.deleteOne(query);
 
-      console.log('deleting interested event with id: ', result);
+      console.log('deleting product with id: ', result);
 
       res.json(result);
     })
